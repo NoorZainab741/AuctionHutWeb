@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Auction extends Model
 {
-    protected $fillable = ['user_id', 'product_title', 'description','starting_amount', 'time', 'status', 'images','category_id','starting_price'];
+    protected $fillable = ['user_id', 'product_title', 'description','starting_price', 'time', 'status', 'images','category_id','starting_price'];
 
     protected $casts = [
         'images' => 'array'

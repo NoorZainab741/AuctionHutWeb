@@ -16,7 +16,7 @@
 @section('route', route('categories.update', ['category' => $category->id]))
 
 @section('form-fields')
-    @include('module.fields')
+    @include('category.fields')
     @method('PUT')
 @endsection
 

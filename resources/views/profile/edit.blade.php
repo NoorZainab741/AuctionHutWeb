@@ -118,7 +118,7 @@
                                             <input type="password" name="password" placeholder="*****"
                                                    class="form-control" autocomplete="off">
                                         </div>
-                                        {{--<div class="col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="form-label">Phone</label>
                                                 <input id="phone" class="form-control" type="tel" name="phone" value="{{$user->phone}}">
@@ -131,52 +131,6 @@
                                                        value="{{$user->address}}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="form-label">Suite</label>
-                                                <input class="form-control" type="text" name="suite" value="{{$user->suite}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="form-label">City</label>
-                                                <input class="form-control" type="text" name="city" value="{{$user->city}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="form-label">Zip</label>
-                                                <input class="form-control" type="text" name="zip" value="{{$user->zip}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="country">Country</label>
-                                            <select name="country_id" class="form-control" id="country_id">
-                                                @if($user->country_id == null)
-                                                    <option value="106">Jamaica</option>
-                                                @else
-                                                    <option value="{{ $user->country_id }}" >{{ $user->country->name }}</option>
-                                                @endif
-                                                @foreach(_countries() as $country)
-                                                    <option
-                                                        value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="state">State</label>
-                                            <select name="state_id" class="form-control" id="state_id">
-                                                @if($user->state_id == null)
-                                                    <option value="1645">Kingston Parish</option>
-                                                @else
-                                                    <option value="{{ $user->state_id }}" >{{ $user->state->name }}</option>
-                                                @endif
-                                                @foreach(_states() as $state)
-                                                    <option
-                                                        value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected' : '' }}>{{ $state->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>--}}
                                         <div class="mt-3 col-md-12">
                                             <label class="form-label">Profile Image</label>
                                             <div class="form-group input-group-square">
@@ -184,7 +138,7 @@
                                                     <div class="input-group-prepend input-group-btn">
                                                 <span class="input-group-text btn-file">
                                                     <i class="icofont icofont-upload"></i>
-                                                    <input type="file" name="avatar" id="imgInp">
+                                                    <input type="file" name="image" id="imgInp">
                                                 </span>
                                                     </div>
                                                     <input class="form-control" readonly>
