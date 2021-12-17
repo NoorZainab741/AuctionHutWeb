@@ -22,28 +22,26 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <div class="table">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Icon</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{$category->name}}</td>
-                                        <td>@if($category->icon == null)
-                                                No Icon
-                                            @else
-                                                <img height="70px" width="70px" class="img-fluid" src="{{asset('storage/'.$category->icon)}}" alt="">
-                                            @endif</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div>
+                            <tr>
+                                <td><h4>
+                                    Name</h4>
+                                    <p style="font-size: 20px">
+                                        {{$category->name}}
+                                    </p></td>
+                                <br>
+                                <td><h4>Icon</h4>  <p>
+                                        @if($category->icon == null)
+                                            No Icon
+                                        @else
+                                            <img height="270px" width="270px" class="img-fluid" src="{{asset('storage/'.$category->icon)}}" alt="">
+                                        @endif</p></td>
+
+                            </tr>
                         </div>
+                        </div>
+
                     </div>
-                </div>
             </div>
         </div>
     </div>

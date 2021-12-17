@@ -27,7 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th>Sr#</th>
-                                    <th>Name</th>
+                                    <th>Product Title</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

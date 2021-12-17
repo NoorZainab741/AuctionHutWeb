@@ -12,7 +12,7 @@
         <label for="icon" class="col-form-label pt-0">{{ __('Icon') }}</label>
         <input type="file" name="icon" class="form-control"
                value="{{ old('icon', isset($category) ? $category->icon : '') }}"
-               autocomplete="off" required>
+               autocomplete="off" >
     </div>
 </div>
 

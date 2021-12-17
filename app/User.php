@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Intervention\Image\Image;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -69,7 +71,7 @@ class User extends Authenticatable
             $dir = public_path('storage/images/'.auth()->user()->role.'/' . $this->id);
             if (!file_exists($dir)) mkdir($dir, 0777, true);
 
-            $image = Image::make(request()->file('image'));
+            $image = \Intervention\Image\Facades\Image::make(request()->file('image'));
             $image->fit(200, 200)->save($dir . '/200x200.jpg');
             $image->fit(80, 80)->save($dir . '/80x80.jpg');
             $this->update(['image' => "/images/".auth()->user()->role.'/'.$this->id."/80x80.jpg"]);

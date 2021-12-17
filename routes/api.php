@@ -16,3 +16,30 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['namespace' => 'API\Auth', 'prefix' => 'user'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
+    Route::post('profile', 'AuthController@profile');
+    Route::post('viewProfile', 'AuthController@viewProfile');
+
+});
+
+Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
+    Route::get('getAllCategories', 'CategoryController@getAllCategories');
+
+
+//    Route::group(['namespace' => 'Orders', 'prefix' => 'orders'], function () {
+//        Route::post('addToCart', 'OrderController@addToCart');
+//        Route::post('completeOrder', 'OrderController@completeOrder');
+//        Route::post('removeFromCart', 'OrderController@removeFromCart');
+//        Route::post('onGoindOrders', 'OrderController@onGoindOrders');
+//        Route::post('getCancelOrders', 'OrderController@getCancelOrders');
+//        Route::post('getCompleteOrders', 'OrderController@getCompleteOrders');
+//        Route::post('viewCart', 'OrderController@viewCart');
+//        Route::post('SingleOrderCartDetails', 'OrderController@SingleOrderCartDetails');
+//        Route::post('markOrderAsCancel', 'OrderController@markOrderAsCancel');
+//        Route::post('markOrderAsComplete', 'OrderController@markOrderAsComplete');
+//    });
+});

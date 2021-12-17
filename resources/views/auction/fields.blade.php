@@ -1,11 +1,11 @@
 <div class="form-row">
 
     <div class="col-md-6 mb-3">
-        <label for="module_id" class="col-form-label pt-0">{{ __('Category') }}</label>
-        <select class="form-control" name="module_id" id="module_id" required>
+        <label for="category_id" class="col-form-label pt-0">{{ __('Category') }}</label>
+        <select class="form-control" name="category_id" id="category_id" required>
 
             <option value="{{ isset($auction) ? $auction->category_id : '' }}">
-                {{ isset($auction) ? $auction->module->name : '- - Select - -' }}</option>
+                {{ isset($auction) ? $auction->category->name : '- - Select - -' }}</option>
             @forelse(_getAllCategories() as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
             @empty
@@ -62,6 +62,5 @@
 
 <div class="col-md-12 mb-3">
     <label for="description" class="col-form-label pt-0">{{ __('Description') }}</label>
-    <textarea name="description" class="form-control" rows="10" cols="20" autocomplete="off" required>{{ old('description', isset($post) ? $post->description : '') }}</textarea>
-    </textarea>
+    <textarea name="description" class="form-control" rows="10" cols="20" autocomplete="off" required>{{ old('description', isset($auction) ? $auction->description : '') }}</textarea>
 </div>

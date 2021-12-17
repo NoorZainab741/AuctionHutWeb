@@ -13,7 +13,7 @@
 
 @section('form-heading', 'Edit Auction')
 
-@section('route', route('auction.update', ['auction' => $auction->id]))
+@section('route', route('auctions.update', ['auction' => $auction->id]))
 
 @section('form-fields')
     @include('auction.fields')
