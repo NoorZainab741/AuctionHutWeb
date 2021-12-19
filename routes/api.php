@@ -28,6 +28,7 @@ Route::group(['namespace' => 'API\Auth', 'prefix' => 'user'], function () {
 
 Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
     Route::get('getAllCategories', 'CategoryController@getAllCategories');
+    Route::get('getAllAuctions', 'AuctionController@getAllAuctions');
 
 
 //    Route::group(['namespace' => 'Orders', 'prefix' => 'orders'], function () {

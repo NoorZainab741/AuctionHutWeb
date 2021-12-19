@@ -24,11 +24,11 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $user->update($request->except('image', 'password'));
-        if ($request->has('password')){
+        if ($request->has('password') && $request->password !=null){
             $user->update(['password' => Hash::make($request->password)]);
         }
         $user->updateImage();
-
+//dd($request);
         return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
 }

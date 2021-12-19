@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
     public function getAllCategories(Request $request)
 {
     $all_categories = Category::get()->all();
