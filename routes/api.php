@@ -21,11 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'API\Auth', 'prefix' => 'user'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
-    Route::post('profile', 'AuthController@profile');
-    Route::post('viewProfile', 'AuthController@viewProfile');
 
 });
-
+Route::group(['namespace' => 'API\Auth', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
+    Route::post('profile', 'AuthController@profile');
+    Route::post('viewProfile', 'AuthController@viewProfile');
+});
 Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
     Route::get('getAllCategories', 'CategoryController@getAllCategories');
     Route::get('getAllAuctions', 'AuctionController@getAllAuctions');
