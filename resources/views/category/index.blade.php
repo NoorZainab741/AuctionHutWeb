@@ -23,18 +23,20 @@
                     </div>
                     <div class="card-body">
                         <div class="table">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Name</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($categories as $category)
+                            <div class="table-responsive product-table">
+                                <div id="basic-1_wrapper" class="dataTables_wrapper no-footer">
+
+                                    <table class="display dataTable no-footer" id="basic-1" role="grid" aria-describedby="basic-1_info">
+                                        <thead>
+                                        <tr role="row"> <th style="width: 46px;">Sr#</th><th style="width: 46px;">Image</th>
+                                            <th style="width: 375.594px;">Title</th><th  style="width: 120.031px;">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                    @foreach($categories as $category)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
+                                        <td class="sorting_1"><img style="height: 70px" src="{{asset('storage/'. $category->icon)}}" alt="" data-original-title="" title=""></td>
+
                                         <td>{{$category->name}}</td>
                                         <td>
                                             <a href="{{ route('categories.edit', ['category' => $category->id]) }}"
