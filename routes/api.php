@@ -33,18 +33,17 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
 
     Route::get('getAllAuctions', 'AuctionController@getAllAuctions');
     Route::post('getAuctionsByCategories', 'AuctionController@getAuctionsByCategories');
+    Route::post('createAuction', 'AuctionController@createAuction');
+    Route::post('updateAuction', 'AuctionController@updateAuction');
+    Route::post('deleteAuction', 'AuctionController@deleteAuction');
 
 
-//    Route::group(['namespace' => 'Orders', 'prefix' => 'orders'], function () {
-//        Route::post('addToCart', 'OrderController@addToCart');
-//        Route::post('completeOrder', 'OrderController@completeOrder');
-//        Route::post('removeFromCart', 'OrderController@removeFromCart');
-//        Route::post('onGoindOrders', 'OrderController@onGoindOrders');
-//        Route::post('getCancelOrders', 'OrderController@getCancelOrders');
-//        Route::post('getCompleteOrders', 'OrderController@getCompleteOrders');
-//        Route::post('viewCart', 'OrderController@viewCart');
-//        Route::post('SingleOrderCartDetails', 'OrderController@SingleOrderCartDetails');
-//        Route::post('markOrderAsCancel', 'OrderController@markOrderAsCancel');
-//        Route::post('markOrderAsComplete', 'OrderController@markOrderAsComplete');
-//    });
+    Route::get('getBidsForAuction', 'BidController@getBidsForAuction');
+    Route::post('createBid', 'BidController@createBid');
+    Route::post('updateBid', 'BidController@updateBid');
+    Route::post('deleteBid', 'BidController@deleteBid');
+
+
+    Route::get('getFeedbackForAuction', 'FeedbackController@getFeedbackForAuction');
+    Route::post('createFeedback', 'FeedbackController@createFeedback');
 });
