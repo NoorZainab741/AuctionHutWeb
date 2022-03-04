@@ -33,6 +33,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
 
     Route::get('getAllAuctions', 'AuctionController@getAllAuctions');
     Route::post('getAuctionsByCategories', 'AuctionController@getAuctionsByCategories');
+    Route::post('getAuctionDetails', 'AuctionController@getAuctionDetails');
     Route::post('createAuction', 'AuctionController@createAuction');
     Route::post('updateAuction', 'AuctionController@updateAuction');
     Route::post('deleteAuction', 'AuctionController@deleteAuction');
