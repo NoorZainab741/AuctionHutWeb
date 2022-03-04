@@ -36,6 +36,19 @@ class AuctionController extends Controller
         }
     }
 
+    public function getAuctionDetails(Request $request)
+    {
+        $data = Auction::where(['id' => $request->id])->get()->all();
+        if($data)
+        {
+            return response()->json(['auction' => $data]);
+        }
+        else
+        {
+            return response()->json(['auction' => []]);
+        }
+    }
+
     public function createAuction(Request $request)
     {
         $imagePath = array();
