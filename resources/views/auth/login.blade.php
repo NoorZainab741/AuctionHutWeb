@@ -14,6 +14,7 @@
                         <div class="card mt-4  shadow-lg">
                             <div class="card-body">
                                 <div class="text-center">
+                                    <h1 class="mb-3">AUCTION HUT</h1>
                                     <h4>LOGIN</h4>
                                     <h6>Enter your Email and Password </h6>
                                 </div>
