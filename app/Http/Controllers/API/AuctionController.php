@@ -77,6 +77,7 @@ class AuctionController extends Controller
 
     public function updateAuction(Request $request)
     {
+        $imagePath = array();
         $auction = Auction::where('id', $request->id)->first();
         $auction->update($request->except('images','_token','_method'));
         if ($request->images)
@@ -84,10 +85,11 @@ class AuctionController extends Controller
             foreach ($request->file('images') as $image){
                 $imagePath[] = $image->store('/auctions/'.$auction->id.'/images', 'public');
             }
+            $auction->update([
+                'images' => $imagePath
+            ]);
+
         }
-        $auction->update([
-            'images' => $imagePath
-        ]);
 
         if($auction)
         {
@@ -103,8 +105,9 @@ class AuctionController extends Controller
     {
         $auction = Auction::where('id', $request->id)->first();
         $auction->delete();
-        Bid::whereIn('auction_id', $request->id)->delete();
 
+        $bids = Bid::where(['auction_id', $request->id]);
+        $bids->delete();
         if($auction)
         {
             return response()->json(['auction' => "deleted"]);
