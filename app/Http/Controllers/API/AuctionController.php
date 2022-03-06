@@ -103,8 +103,8 @@ class AuctionController extends Controller
     {
         $auction = Auction::where('id', $request->id)->first();
         $auction->delete();
-        $bids = Bid::where('auction_id', $request->id)-> get()->all();
-        $bids->delete();
+        Bid::whereIn('auction_id', $request->id)->delete();
+
         if($auction)
         {
             return response()->json(['auction' => "deleted"]);

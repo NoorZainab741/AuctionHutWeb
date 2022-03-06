@@ -90,17 +90,17 @@ class AuctionController extends Controller
     {
         $imagePath = array();
         $userID = auth()->user()->id;
+//        dd($request->toArray());
         $auction->update($request->except('images','_token','_method'));
         if ($request->images)
         {
             foreach ($request->file('images') as $image){
                 $imagePath[] = $image->store('/auctions/'.$auction->id.'/images', 'public');
             }
+            $auction->update([
+                'images' => $imagePath
+            ]);
         }
-        $auction->update([
-            'images' => $imagePath
-        ]);
-
 
         return redirect(route('auctions.index'));
 

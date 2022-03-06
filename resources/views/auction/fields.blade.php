@@ -51,7 +51,9 @@
 <div class="form-row">
     <div class="col-md-12 mb-3">
         <label for="images" class="col-form-label pt-0">{{ __('Images') }}</label>
-        <input type="file" name="images[]" class="form-control" multiple>
+        <input type="file" name="images[]" class="form-control"
+{{--               value="{{ old('images', isset($auction) ? $auction->images : '') }}"--}}
+               multiple>
     </div>
 </div>
 

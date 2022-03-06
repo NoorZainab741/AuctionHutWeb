@@ -17,7 +17,7 @@ class CreateAuctionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('product_title')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('time')->nullable();
             $table->string('status')->nullable();
             $table->json('images')->nullable();
