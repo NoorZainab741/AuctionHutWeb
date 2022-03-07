@@ -65,6 +65,23 @@ class BidController extends Controller
         }
     }
 
+    public function acceptBid(Request $request)
+    {
+        $bid = Bid::where('id', $request->id)->first();
+        $bid->update($request->all());
+        $auction = Auction::where('id', $request->auction_id)->first();
+        $auction->update(['status' => 'Accepted']);
+
+        if($bid)
+        {
+            return response()->json(['bid' => "yes"]);
+        }
+        else
+        {
+            return response()->json(['bid' => "no"]);
+        }
+    }
+
     public function deleteBid(Request $request)
     {
         $bid = Bid::where('id', $request->id)->first();
