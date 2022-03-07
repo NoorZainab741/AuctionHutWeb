@@ -78,7 +78,7 @@ class AuthController extends Controller
             $user->update($request->except('password','image'));
             if ($request->hasFile('image'))
             {
-                $image_path = $request->file('icon')->store('user/'.$user->id.'/image', 'public');
+                $image_path = $request->file('image')->store('user/'.$user->id.'/image', 'public');
                 $user->update([
                     'image' => $image_path
                 ]);
@@ -94,10 +94,18 @@ class AuthController extends Controller
         {
 
             $user = User::where('id',$request->id )->first();
-            $user->update($request->except('password'));
+            $user->update($request->except('password',image));
             $user->update([
                 "password" => Hash::make($request->password)
             ]);
+            if ($request->hasFile('image'))
+            {
+                $image_path = $request->file('image')->store('user/'.$user->id.'/image', 'public');
+                $user->update([
+                    'image' => $image_path
+                ]);
+            }
+
 
             if($user)
             {
