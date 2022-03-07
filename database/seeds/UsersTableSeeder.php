@@ -13,12 +13,14 @@ class UsersTableSeeder extends Seeder
     {
         $admins = array(
             [
-                'name' => 'Admin',
+                'first_name' => 'Noor',
+                'last_name' => 'Zainab',
                 'phone' => '1234567890',
                 'email' => 'admin@system.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('password'),
                 'gender' => 'Female',
                 'role' => 'admin',
+                'status' => 'Active'
             ],
         );
 

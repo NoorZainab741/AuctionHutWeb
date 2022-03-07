@@ -39,7 +39,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
     Route::post('deleteAuction', 'AuctionController@deleteAuction');
 
 
-    Route::get('getBidsForAuction', 'BidController@getBidsForAuction');
+    Route::post('getBidsForAuction', 'BidController@getBidsForAuction');
     Route::post('createBid', 'BidController@createBid');
     Route::post('getUserBids', 'BidController@getUserBids');
     Route::post('updateBid', 'BidController@updateBid');
