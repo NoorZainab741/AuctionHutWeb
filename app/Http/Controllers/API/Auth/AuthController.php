@@ -128,6 +128,18 @@ class AuthController extends Controller
             return response()->json(["User" => []]);
         }
     }
+    function updateFcm(Request $request)
+    {
+        $user = User::where('id',$request-> id)->first();
+        $user->update(['fcm_token'=> $request->fcm_token]);
+        if($user)
+        {
+            return response()->json(["User" => $user]);
+        }else
+        {
+            return response()->json(["User" => []]);
+        }
+    }
 
     /**
      * Get the authenticated User
