@@ -127,6 +127,22 @@ class AuctionController extends Controller
             return response()->json(['auction' => "not deleted"]);
         }
     }
+
+
+    public function getSearchResults(Request $request)
+    {
+        $results = Auction::where('product_title', 'like', '%' . $request->term . '%')->get();
+        if($results)
+        {
+            return response()->json(['results' => $results]);
+        }
+        else
+        {
+            return response()->json(['results' => []]);
+        }
+    }
+
+
     public function createCheckoutSession(Request $request)
     {
         $stripe = new \Stripe\StripeClient(
