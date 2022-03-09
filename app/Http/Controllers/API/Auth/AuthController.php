@@ -94,7 +94,7 @@ class AuthController extends Controller
         {
 
             $user = User::where('id',$request->id )->first();
-            $user->update($request->except('password',image));
+            $user->update($request->except('password','image'));
             $user->update([
                 "password" => Hash::make($request->password)
             ]);
