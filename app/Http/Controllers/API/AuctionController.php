@@ -127,7 +127,34 @@ class AuctionController extends Controller
             return response()->json(['auction' => "not deleted"]);
         }
     }
+    public function createCheckoutSession(Request $request)
+    {
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51KbPGNAdVJ1r9ZbYvuFx23kSfdYfebVafD5aNaYgs22TDDrR9Sq9EDIDgtpAO9AzN5nWg4zIFFvvl5Dv8H8mfBza00NGtSaY7K'
+        );
+        $session = $stripe->checkout->sessions->create([
+            // 'billing_address_collection' => 'required',
+//            'success_url' => 'https://lincs.store/customer/completeCoinsPurchasing?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
+//            'cancel_url' => 'https://lincs.store/customer?sc_checkout=cancel',
+            'success_url' => 'http://127.0.0.1:8000/customer/completeCoinsPurchasing?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
+            'cancel_url' => 'http://127.0.0.1:8000/customer?sc_checkout=cancel',
+            'payment_method_types' => ['card'],
+            'line_items' => [
+                [
+                    'name' => "Buy ". $request->amount*2 ." Coins from LINCS",
+                    'images' => ['https://firebasestorage.googleapis.com/v0/b/lincs-312010.appspot.com/o/logo.png?alt=media&token=900b3c73-bd46-484c-a85f-6b04441a4bcb'],
+                    'amount' => $request->amount * 100,
+                    'currency' => 'PKR',
+                    'quantity' => '1',
+                ],
+            ],
 
+            'mode' => 'payment',
+            'customer_email' => auth()->user()->email
+        ]);
+
+        return $session->id;
+    }
     public function __construct()
     {
         $this->middleware('auth:api_user');

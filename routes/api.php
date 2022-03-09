@@ -26,6 +26,7 @@ Route::group(['namespace' => 'API\Auth', 'prefix' => 'user'], function () {
 Route::group(['namespace' => 'API\Auth', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
     Route::post('profile', 'AuthController@profile');
     Route::post('viewProfile', 'AuthController@viewProfile');
+    Route::post('updateFcm', 'AuthController@updateFcm');
 });
 Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jwt'], function () {
 
@@ -37,6 +38,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
     Route::post('createAuction', 'AuctionController@createAuction');
     Route::post('updateAuction', 'AuctionController@updateAuction');
     Route::post('deleteAuction', 'AuctionController@deleteAuction');
+    Route::post('createCheckoutSession', 'AuctionController@createCheckoutSession');
 
 
     Route::post('getBidsForAuction', 'BidController@getBidsForAuction');
