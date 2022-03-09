@@ -75,7 +75,7 @@ class AuthController extends Controller
 
 
             $user = User::where('id',$request->id )->first();
-            $user->update($request->except('password','image'));
+            $user->update($request->except('image','password'));
             if ($request->hasFile('image'))
             {
                 $image_path = $request->file('image')->store('user/'.$user->id.'/image', 'public');
