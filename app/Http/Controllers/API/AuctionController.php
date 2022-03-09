@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Auction;
 use App\Bid;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AuctionController extends Controller
@@ -63,6 +64,12 @@ class AuctionController extends Controller
         $auction->update([
             'images' => $imagePath
         ]);
+        $carbon_date = Carbon::parse($request->createdAt);
+
+        $carbon_date->addHours($request->time);
+        $auction->update(['endAt'=>$carbon_date]);
+
+//        dd($carbon_date->toArray());
 
 //        $data = Auction::where(['category_id' => $request->category_id])->get()->all();
         if($auction)
@@ -88,8 +95,11 @@ class AuctionController extends Controller
             $auction->update([
                 'images' => $imagePath
             ]);
-
         }
+        $carbon_date = Carbon::parse($request->createdAt);
+
+        $carbon_date->addHours($request->time);
+        $auction->update(['endAt'=>$carbon_date]);
 
         if($auction)
         {
