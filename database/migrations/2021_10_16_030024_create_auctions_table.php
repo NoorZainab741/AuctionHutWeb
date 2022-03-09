@@ -23,6 +23,9 @@ class CreateAuctionsTable extends Migration
             $table->json('images')->nullable();
             $table->string('category_id')->nullable();
             $table->string('starting_price')->nullable();
+            $table->string('ending_price')->nullable();
+            $table->string('endAt')->nullable();
+            $table->string('payment_method')->nullable();
             $table->timestamps();
         });
     }

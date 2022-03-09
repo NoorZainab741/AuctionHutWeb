@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AuctionController extends Controller
@@ -48,7 +49,10 @@ class AuctionController extends Controller
         $auction->update([
             'images' => $imagePath
         ]);
+        $carbon_date = Carbon::parse($request->createdAt);
 
+        $carbon_date->addHours($request->time);
+        $auction->update(['endAt'=>$carbon_date]);
 //        $admin = Admin::where('email', 'admin@system.com')->first();
 //        $admin->notify(new PostCreationNotification($post));
         return redirect(route('auctions.index'));
@@ -101,7 +105,10 @@ class AuctionController extends Controller
                 'images' => $imagePath
             ]);
         }
+        $carbon_date = Carbon::parse($request->createdAt);
 
+        $carbon_date->addHours($request->time);
+        $auction->update(['endAt'=>$carbon_date]);
         return redirect(route('auctions.index'));
 
     }
