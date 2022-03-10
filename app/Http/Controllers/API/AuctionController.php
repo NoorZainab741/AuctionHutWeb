@@ -110,6 +110,7 @@ class AuctionController extends Controller
             return response()->json(['auction' => "no"]);
         }
     }
+
     public function completeAuction(Request $request)
     {
         $auction = Auction::where('id', $request->auction_id)->first();
@@ -143,7 +144,6 @@ class AuctionController extends Controller
         }
     }
 
-
     public function getSearchResults(Request $request)
     {
         $results = Auction::where('product_title', 'like', '%' . $request->term . '%')->get();
@@ -157,7 +157,6 @@ class AuctionController extends Controller
         }
     }
 
-
     public function createCheckoutSession(Request $request)
     {
         $stripe = new \Stripe\StripeClient(
@@ -165,17 +164,15 @@ class AuctionController extends Controller
         );
         $session = $stripe->checkout->sessions->create([
             // 'billing_address_collection' => 'required',
-//            'success_url' => 'https://lincs.store/customer/completeCoinsPurchasing?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
-//            'cancel_url' => 'https://lincs.store/customer?sc_checkout=cancel',
-            'success_url' => 'http://127.0.0.1:8000/customer/completeCoinsPurchasing?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
-            'cancel_url' => 'http://127.0.0.1:8000/customer?sc_checkout=cancel',
+            'success_url' => 'https://auctionhut.store/checkout?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
+            'cancel_url' => 'https://auctionhut.store/checkout?sc_checkout=cancel',
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
-                    'name' => "Buy ". $request->amount*2 ." Coins from LINCS",
-                    'images' => ['https://firebasestorage.googleapis.com/v0/b/lincs-312010.appspot.com/o/logo.png?alt=media&token=900b3c73-bd46-484c-a85f-6b04441a4bcb'],
+                    'name' => "Buy ". $request->product_title ,
+                    'images' => ['https://firebasestorage.googleapis.com/v0/b/auctionhut-dfa60.appspot.com/o/--1024JPG-01.jpg?alt=media&token=31cd1e5f-5105-4bf4-af6c-57e6e78846a8'],
                     'amount' => $request->amount * 100,
-                    'currency' => 'PKR',
+                    'currency' => 'USD',
                     'quantity' => '1',
                 ],
             ],
@@ -184,8 +181,10 @@ class AuctionController extends Controller
             'customer_email' => auth()->user()->email
         ]);
 
+
         return $session->id;
     }
+
     public function __construct()
     {
         $this->middleware('auth:api_user');
