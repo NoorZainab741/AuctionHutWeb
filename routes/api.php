@@ -40,6 +40,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
     Route::post('deleteAuction', 'AuctionController@deleteAuction');
     Route::post('getSearchResults', 'AuctionController@getSearchResults');
     Route::post('createCheckoutSession', 'AuctionController@createCheckoutSession');
+    Route::post('completeAuction', 'AuctionController@completeAuction');
 
 
     Route::post('getBidsForAuction', 'BidController@getBidsForAuction');
