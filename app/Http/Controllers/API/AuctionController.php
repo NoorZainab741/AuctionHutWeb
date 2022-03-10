@@ -178,7 +178,7 @@ class AuctionController extends Controller
             ],
 
             'mode' => 'payment',
-            'customer_email' => auth()->user()->email
+            'email' => auth()->user()->email
         ]);
 
 
