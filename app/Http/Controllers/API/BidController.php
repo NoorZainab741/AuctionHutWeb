@@ -25,8 +25,8 @@ class BidController extends Controller
 
     public function getUserBids(Request $request)
     {
-        $data = Bid::where(['user_id' => $request->user_id])->get()->all();
-        $data->load('auction');
+        $data = Bid::where(['user_id' => $request->user_id])->load('auction')->get()->all();
+//        $data->load('auction');
 
         if($data)
         {
