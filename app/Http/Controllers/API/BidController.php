@@ -12,7 +12,9 @@ class BidController extends Controller
 
     public function getBidsForAuction(Request $request)
     {
-        $data = Bid::where(['auction_id' => $request->auction_id])->get()->all();
+        $data = Bid::where(['auction_id' => $request->auction_id])->get();
+        $data->load('user');
+
         if($data)
         {
             return response()->json(['bids' => $data]);

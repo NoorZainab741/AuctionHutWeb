@@ -110,6 +110,21 @@ class AuctionController extends Controller
             return response()->json(['auction' => "no"]);
         }
     }
+    public function completeAuction(Request $request)
+    {
+        $auction = Auction::where('id', $request->auction_id)->first();
+        $auction->update($request->all());
+        $bid = Bid::where('id', $request->id)->first();
+        $bid->update(['status'=>'Completed']);
+        if($auction)
+        {
+            return response()->json(['auction' => "yes"]);
+        }
+        else
+        {
+            return response()->json(['auction' => "no"]);
+        }
+    }
 
     public function deleteAuction(Request $request)
     {
