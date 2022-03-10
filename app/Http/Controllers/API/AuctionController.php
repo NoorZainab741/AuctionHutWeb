@@ -169,7 +169,7 @@ class AuctionController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
-                    'name' => "Buy ". $request->product_title ,
+                    'name' => "Buy ". $request->product_title. "" ,
                     'images' => ['https://firebasestorage.googleapis.com/v0/b/auctionhut-dfa60.appspot.com/o/--1024JPG-01.jpg?alt=media&token=31cd1e5f-5105-4bf4-af6c-57e6e78846a8'],
                     'amount' => $request->amount * 100,
                     'currency' => 'USD',
@@ -178,7 +178,7 @@ class AuctionController extends Controller
             ],
 
             'mode' => 'payment',
-//            'customer_email' => $request->email
+            'customer_email' => $request->email
         ]);
 
 
