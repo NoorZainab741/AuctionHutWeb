@@ -51,6 +51,6 @@ Route::group(['namespace' => 'API', 'prefix' => 'user', 'middleware' => 'auth.jw
     Route::post('deleteBid', 'BidController@deleteBid');
 
 
-    Route::get('getFeedbackForAuction', 'FeedbackController@getFeedbackForAuction');
+    Route::post('getFeedbackForAuction', 'FeedbackController@getFeedbackForAuction');
     Route::post('createFeedback', 'FeedbackController@createFeedback');
 });
