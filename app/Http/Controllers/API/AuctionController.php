@@ -166,7 +166,7 @@ class AuctionController extends Controller
             // 'billing_address_collection' => 'required',
             'success_url' => 'https://auctionhut.store/checkout?sc_checkout=success&sc_sid={CHECKOUT_SESSION_ID}&amount='.$request->amount,
             'cancel_url' => 'https://auctionhut.store/checkout?sc_checkout=cancel',
-            'payment_method_types' => ['card'],
+            'payment_method_types' => ['visa'],
             'line_items' => [
                 [
                     'name' => "Buy ". $request->product_title. "" ,
